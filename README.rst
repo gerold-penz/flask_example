@@ -6,11 +6,11 @@ Servus Hannes!
 
 Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu können.
 
-Apache aktiviert
+- Apache aktiviert
 
-HTTP in der Firewall freigegeben
+- HTTP in der Firewall freigegeben
 
-Quellcode hochgeladen (siehe : https://github.com/gerold-penz/flask_example/)
+- Quellcode hochgeladen (siehe : https://github.com/gerold-penz/flask_example/)
 
 ::
 
@@ -38,7 +38,7 @@ Quellcode hochgeladen (siehe : https://github.com/gerold-penz/flask_example/)
             │       └── shared
             └── Werkzeug-0.12.2.dist-info
 
-*/etc/httpd/conf.d/viruald.conf* erstellt::
+- */etc/httpd/conf.d/viruald.conf* erstellt::
 
     <VirtualHost *:80>
         ServerName fedora.local
@@ -53,6 +53,8 @@ Quellcode hochgeladen (siehe : https://github.com/gerold-penz/flask_example/)
         WSGIScriptAlias / /var/www/wsgi-anwendung/application/anwendung.wsgi
 
     </VirtualHost>
+
+Damit hat das dann schon funktioniert.
 
 Eventuell benötigt das Programm noch ein paar Rechte im Dateisystem um Dateien zu erstellen.
 Damit das funktioniert, sollte die WSGI-Anwendung als der Benutzer ausgeführt werden, mit dem man auch
