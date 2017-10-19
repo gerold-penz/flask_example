@@ -70,7 +70,7 @@ Damit das funktioniert, sollte die WSGI-Anwendung als der Benutzer ausgeführt w
 die Dateien hochläd.
 
 In diesem Fall muss man noch den Benutzer und die Gruppe in der Apache-Konfiguration mit übergeben.
-Damit das funktioniert sieht die Apache-Konfiguration so aus::
+Die Apache-Konfiguration sieht jetzt so aus::
 
     <VirtualHost *:80>
         ServerName fedora.local
@@ -90,8 +90,8 @@ Damit das funktioniert sieht die Apache-Konfiguration so aus::
 
     </VirtualHost>
 
-Mit ``WSGIScriptReloading On`` wird dem Apachen mitgeteilt, dass dieser das Programm beim nächsten Zugriff
-neu startet, wenn sich die */var/www/wsgi-anwendung/application/anwendung.wsgi*-Datei ändert.
+Mit ``WSGIScriptReloading On`` wird dem Apachen mitgeteilt, dass dieser das Programm neu startet,
+wenn sich die */var/www/wsgi-anwendung/application/anwendung.wsgi*-Datei ändert.
 
 
 ======
