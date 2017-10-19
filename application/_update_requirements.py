@@ -8,14 +8,12 @@ import os
 import subprocess
 
 THISDIR = os.path.dirname(os.path.abspath(__file__))
-BASEDIR = os.path.abspath(os.path.join(THISDIR, ".."))
-APPDIR = os.path.join(BASEDIR, "application")
-LIBDIR = os.path.join(APPDIR, "lib")
+LIBDIR = os.path.join(THISDIR, "lib")
 
 
 def main():
     
-    os.chdir(APPDIR)
+    os.chdir(THISDIR)
     print u"Install requirements..."
 
     # Argumente zusammensetzen
@@ -28,7 +26,7 @@ def main():
     ]
 
     # Hochladen
-    returncode = subprocess.call(args = args, cwd = APPDIR)
+    returncode = subprocess.call(args = args, cwd = THISDIR)
     if returncode != 0:
         raw_input("Press ENTER to continue...")
 

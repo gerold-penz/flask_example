@@ -6,10 +6,8 @@ import subprocess
 
 
 THISDIR = os.path.dirname(os.path.abspath(__file__))
-BASEDIR = os.path.abspath(os.path.join(THISDIR, ".."))
-APPDIR = os.path.join(BASEDIR, "application")
 FLASK = "/usr/local/bin/flask"
-FLASK_APP = os.path.join(APPDIR, "anwendung.py")
+FLASK_APP = os.path.join(THISDIR, "anwendung.py")
 
 
 if __name__ == "__main__":
@@ -25,4 +23,4 @@ if __name__ == "__main__":
     env = {"FLASK_APP": FLASK_APP}
 
     print u"Serving HTTP on port 5000..."
-    subprocess.call(args, env = env, cwd = APPDIR)
+    subprocess.call(args, env = env, cwd = THISDIR)

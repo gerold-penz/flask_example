@@ -2,18 +2,14 @@
 # coding: utf-8
 
 import os
-import sys
-
-THISDIR = os.path.dirname(os.path.abspath(__file__))
-BASEDIR = os.path.abspath(os.path.join(THISDIR, ".."))
-APPDIR = os.path.join(BASEDIR, "application")
-sys.path.insert(1, APPDIR)
-
 from anwendung import app
 from wsgiref.simple_server import make_server
 
 
 if __name__ == "__main__":
+    THISDIR = os.path.dirname(os.path.abspath(__file__))
+    os.chdir(THISDIR)
+    
     httpd = make_server("0.0.0.0", 5000, app)
     print u"Serving HTTP on port 5000..."
     httpd.serve_forever()
