@@ -6,11 +6,9 @@ Servus!
 
 Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu können.
 
-- Apache aktiviert
+- Apache aktiviert und HTTP in der Firewall freigegeben (https://fedoraproject.org/wiki/Apache_HTTP_Server)
 
-- HTTP in der Firewall freigegeben
-
-- Quellcode hochgeladen (siehe : https://github.com/gerold-penz/flask_example/)
+- Quellcode hochgeladen (https://github.com/gerold-penz/flask_example/)
 
 ::
 
@@ -25,20 +23,10 @@ Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu k�
             ├── click
             ├── click-6.7.dist-info
             ├── flask
-            │   └── ext
             ├── Flask-0.12.2.dist-info
-            ├── itsdangerous-0.24.dist-info
-            ├── jinja2
-            ├── Jinja2-2.9.6.dist-info
-            ├── markupsafe
-            ├── MarkupSafe-1.0.dist-info
-            ├── werkzeug
-            │   ├── contrib
-            │   └── debug
-            │       └── shared
-            └── Werkzeug-0.12.2.dist-info
+            └── ...
 
-- */etc/httpd/conf.d/viruald.conf* erstellt::
+- */etc/httpd/conf.d/virualh.conf* erstellt::
 
     <VirtualHost *:80>
         ServerName fedora.local
@@ -56,11 +44,16 @@ Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu k�
 
 Damit hat das dann schon funktioniert.
 
+``DocumentRoot`` zeigt absichtlich nicht in den Ordner in dem sich die Anwendung befindet. So ist sichergestellt,
+dass nicht von Aussen auf den Quellcode zugegriffen werden kann. Ansonsten kann man den Quellcode per *.htaccess*-Datei
+absichern.
+
 Eventuell benötigt das Programm noch ein paar Rechte im Dateisystem um Dateien zu erstellen.
 Damit das funktioniert, sollte die WSGI-Anwendung als der Benutzer ausgeführt werden, mit dem man auch
 die Dateien hochläd.
+
 In diesem Fall muss man noch den Benutzer und die Gruppe in der Apache-Konfiguration mit übergeben.
-Damit das funktioniert sieht die Apache-Konfiguration so aus (Benutzer und Gruppe: *gerold*)::
+Damit das funktioniert sieht die Apache-Konfiguration so aus::
 
     <VirtualHost *:80>
         ServerName fedora.local
@@ -72,7 +65,8 @@ Damit das funktioniert sieht die Apache-Konfiguration so aus (Benutzer und Grupp
             Allow from all
         </Directory>
 
-        WSGIDaemonProcess wsgi-anwendung user=gerold group=gerold
+        # <UserName> und <GroupName> ersetzen
+        WSGIDaemonProcess wsgi-anwendung user=<UserName> group=<GroupName>
         WSGIProcessGroup wsgi-anwendung
         WSGIScriptAlias / /var/www/wsgi-anwendung/anwendung.wsgi
         WSGIScriptReloading On
@@ -81,7 +75,4 @@ Damit das funktioniert sieht die Apache-Konfiguration so aus (Benutzer und Grupp
 
 Mit ``WSGIScriptReloading On`` wird dem Apachen mitgeteilt, dass dieser das Programm beim nächsten Zugriff
 neu startet, wenn sich die */var/www/wsgi-anwendung/application/anwendung.wsgi*-Datei ändert.
-
-``DocumentRoot`` zeigt absichtlich nicht in den Ordner in dem sich die Anwendung befindet. So ist sichergestellt,
-dass nicht von Aussen auf den Quellcode zugegriffen werden kann.
 
