@@ -2,7 +2,7 @@
 Flask Example
 #############
 
-Servus Hannes!
+Servus!
 
 Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu können.
 
@@ -50,7 +50,7 @@ Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu k�
             Allow from all
         </Directory>
 
-        WSGIScriptAlias / /var/www/wsgi-anwendung/application/anwendung.wsgi
+        WSGIScriptAlias / /var/www/wsgi-anwendung/anwendung.wsgi
 
     </VirtualHost>
 
@@ -74,7 +74,7 @@ Damit das funktioniert sieht die Apache-Konfiguration so aus (Benutzer und Grupp
 
         WSGIDaemonProcess wsgi-anwendung user=gerold group=gerold
         WSGIProcessGroup wsgi-anwendung
-        WSGIScriptAlias / /var/www/wsgi-anwendung/application/anwendung.wsgi
+        WSGIScriptAlias / /var/www/wsgi-anwendung/anwendung.wsgi
         WSGIScriptReloading On
 
     </VirtualHost>
@@ -82,4 +82,6 @@ Damit das funktioniert sieht die Apache-Konfiguration so aus (Benutzer und Grupp
 Mit ``WSGIScriptReloading On`` wird dem Apachen mitgeteilt, dass dieser das Programm beim nächsten Zugriff
 neu startet, wenn sich die */var/www/wsgi-anwendung/application/anwendung.wsgi*-Datei ändert.
 
+``DocumentRoot`` zeigt absichtlich nicht in den Ordner in dem sich die Anwendung befindet. So ist sichergestellt,
+dass nicht von Aussen auf den Quellcode zugegriffen werden kann.
 
