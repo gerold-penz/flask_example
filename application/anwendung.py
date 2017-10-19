@@ -15,13 +15,6 @@ import http_root
 app = flask.Flask(__name__)
 
 
-# Einstellungen
-app.config.update({
-    "DEBUG": True,
-    "TESTING": True,
-})
-
-
 # Seiten registrieren
 app.register_blueprint(http_root.blueprint)
 app.register_blueprint(http_root.testpage.blueprint)
