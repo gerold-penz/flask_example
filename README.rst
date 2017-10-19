@@ -62,7 +62,7 @@ Ich habe mir in einer virtuellen Maschine einen Fedora-Server installiert um das
 Damit hat das dann schon funktioniert.
 
 ``DocumentRoot`` zeigt absichtlich nicht in den Ordner in dem sich die Anwendung befindet. So ist sichergestellt,
-dass nicht von Aussen auf den Quellcode zugegriffen werden kann. Ansonsten kann man den Quellcode per *.htaccess*-Datei
+dass nicht von aussen auf den Quellcode zugegriffen werden kann. Ansonsten kann man den Quellcode per *.htaccess*-Datei
 absichern.
 
 Eventuell benötigt das Programm noch ein paar Rechte im Dateisystem um Dateien zu erstellen.
@@ -91,7 +91,7 @@ Die Apache-Konfiguration sieht jetzt so aus::
     </VirtualHost>
 
 Mit ``WSGIScriptReloading On`` wird dem Apachen mitgeteilt, dass dieser das Programm neu startet,
-wenn sich die */var/www/wsgi-anwendung/application/anwendung.wsgi*-Datei ändert.
+wenn sich die */var/www/wsgi-anwendung/anwendung.wsgi*-Datei ändert.
 
 
 ======
