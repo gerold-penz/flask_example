@@ -9,7 +9,7 @@ BASEDIR = os.path.abspath(os.path.join(THISDIR, ".."))
 APPDIR = os.path.join(BASEDIR, "application")
 sys.path.insert(1, APPDIR)
 
-from wsgi_anwendung import app
+from anwendung import app
 from wsgiref.simple_server import make_server
 
 
