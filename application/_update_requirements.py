@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 """
-Installiert oder updated die Python-Requirements
+Installiert oder aktualisiert die Python-Requirements
 """
 
 import os
@@ -33,5 +33,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 

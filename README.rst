@@ -2,13 +2,30 @@
 Flask Example
 #############
 
-Servus!
 
-Ich habe mir in einer virtuellen Maschine ein Fedora installiert um testen zu können.
+==============
+Abhängigkeiten
+==============
+
+Damit man keine Abhängigkeiten auf dem Server installieren muss, werden diese im Ordner *lib* gleich mitgeliefert.
+Alle Abhängigkeiten stehen in der Datei ``requirements.txt``. Diese werden mit ``python _update_requirements.py``
+installiert und aktualisiert.
+
+Dafür muss auf der Entwicklungs-Maschine **Pip** installiert sein. Unter Debian-Derivaten wird das mit
+``sudo apt install python-pip`` installiert und einem anschließenden ``sudo pip install --upgrade pip`` auf den
+aktuellsten Stand gebracht.
+
+
+============
+Installation
+============
+
+Ich habe mir in einer virtuellen Maschine einen Fedora-Server installiert um das ausprobieren zu können.
 
 - Apache aktiviert und HTTP in der Firewall freigegeben (https://fedoraproject.org/wiki/Apache_HTTP_Server)
 
-- Quellcode hochgeladen (https://github.com/gerold-penz/flask_example/)
+- Quellcode hochgeladen (https://github.com/gerold-penz/flask_example/) alles aus dem *application*-Ordner wurde in den
+  *wsgi-anwendung*-Ordner kopiert.
 
 ::
 
@@ -76,3 +93,12 @@ Damit das funktioniert sieht die Apache-Konfiguration so aus::
 Mit ``WSGIScriptReloading On`` wird dem Apachen mitgeteilt, dass dieser das Programm beim nächsten Zugriff
 neu startet, wenn sich die */var/www/wsgi-anwendung/application/anwendung.wsgi*-Datei ändert.
 
+
+======
+Testen
+======
+
+Wenn man SSH-Zugang zum Server hat, dann kann man die Anwendung direkt starten. Damit man dafür nicht extra
+Flask installieren muss, habe ich ``_run_simple_wsgi_server.py`` geschrieben. Einfach mit ``python _run_simple_wsgi_server.py``
+starten und schon kann man mit ``curl http://localhost:5000`` testen ob die Anwendung läuft. Läuft diese nicht,
+wird sie erst gar nicht im Apachen laufen.
